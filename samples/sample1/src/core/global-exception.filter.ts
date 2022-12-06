@@ -1,5 +1,5 @@
 import { ArgumentsHost, Catch } from '@nestjs/common';
-import { LoggerExceptionFilter } from '@pedrohcd/nest-logger';
+import { LoggerExceptionFilter } from '@pedrohcdo/nest-logger-bundle';
 
 @Catch()
 export class GlobalExceptionFilter extends LoggerExceptionFilter {

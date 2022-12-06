@@ -12,7 +12,7 @@ import {
 	NestLoggerModule,
 	NestLoggerOnErrorStrategy,
 	NestLoggerParams,
-} from '@pedrohcd/nest-logger';
+} from '@pedrohcdo/nest-logger-bundle';
 
 //
 const { NODE_ENV } = process.env;

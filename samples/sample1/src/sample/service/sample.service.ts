@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { NestLoggerService } from '@pedrohcd/nest-logger';
+import { NestLoggerService } from '@pedrohcdo/nest-logger-bundle';
 @Injectable()
 export class SampleService {
 

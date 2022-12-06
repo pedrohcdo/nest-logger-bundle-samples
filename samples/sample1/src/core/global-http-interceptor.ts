@@ -1,5 +1,5 @@
 import { CallHandler, Catch, ExecutionContext } from '@nestjs/common';
-import { LoggerHttpInterceptor } from '@pedrohcd/nest-logger';
+import { LoggerHttpInterceptor } from '@pedrohcdo/nest-logger-bundle';
 import { Observable } from 'rxjs';
 
 @Catch()
