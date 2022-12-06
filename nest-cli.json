@@ -3,32 +3,32 @@
 	"collection": "@nestjs/schematics",
 	"monorepo": true,
 
-	"sourceRoot": "samples/sample1/src",
+	"sourceRoot": "sample1/src",
 	"entryFile": "main",
 
 	"projects": {
 		"sample1": {
 			"type": "application",
 			"entryFile": "main",
-			"root": "samples/sample1",
-			"sourceRoot": "samples/sample1/src",
+			"root": "sample1",
+			"sourceRoot": "sample1/src",
 			"compilerOptions": {
-			  "tsConfigPath": "samples/sample1/tsconfig.test.json"
+			  "tsConfigPath": "sample1/tsconfig.test.json"
 			}
 		},
 		"sample2": {
 			"type": "application",
 			"entryFile": "main",
-			"root": "samples/sample2",
-			"sourceRoot": "samples/sample2/src",
+			"root": "sample2",
+			"sourceRoot": "sample2/src",
 			"compilerOptions": {
-			  "tsConfigPath": "samples/sample2/tsconfig.test.json"
+			  "tsConfigPath": "sample2/tsconfig.test.json"
 			}
 		}
 	},
 
 	"compilerOptions": {
-		"webpack": false,
+		"webpack": true,
 		"deleteOutDir": true
 	}
 }
