@@ -48,8 +48,8 @@ ________________
 
 ## Stay in touch
 
-- Author - [Pedro Henrique C.](https://github.com/pedrohcdo)
+- Author - [Pedro Henrique C.](https://twitter.com/pedrohcdo)
 
 ## License
 
-NestLoggerBundleSamples is [MIT licensed](LICENSE).
+NestLoggerBundle is [Apache License 2.0](LICENSE).
