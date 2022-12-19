@@ -3,7 +3,7 @@
   "compilerOptions": {
     "declaration": false,
     "sourceMap": false,
-    "outDir": "../dist/sample2"
+    "outDir": "../dist/sample3"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "test", "**/*spec.ts"]

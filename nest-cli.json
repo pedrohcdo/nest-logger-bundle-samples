@@ -3,9 +3,6 @@
 	"collection": "@nestjs/schematics",
 	"monorepo": true,
 
-	"sourceRoot": "sample1/src",
-	"entryFile": "main",
-
 	"projects": {
 		"sample1": {
 			"type": "application",
@@ -23,6 +20,15 @@
 			"sourceRoot": "sample2/src",
 			"compilerOptions": {
 			  "tsConfigPath": "sample2/tsconfig.test.json"
+			}
+		},
+		"sample3": {
+			"type": "application",
+			"entryFile": "main",
+			"root": "sample3",
+			"sourceRoot": "sample3/src",
+			"compilerOptions": {
+			  "tsConfigPath": "sample3/tsconfig.test.json"
 			}
 		}
 	},

@@ -7,12 +7,13 @@ import { GlobalExceptionFilter } from './global-exception.filter';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { environmentSchema } from '../config/environment.schema';
 import {
-	NestLoggerDispatchStrategy,
-	NestLoggerLevelStrategy,
-	NestLoggerModule,
-	NestLoggerOnErrorStrategy,
-	NestLoggerParams,
-} from '@pedrohcd/nest-logger';
+	LoggerBundleLevelStrategy,
+	LoggerBundleModule,
+	LoggerBundleParams,
+	LoggerBundleParamsLogggerMode,
+} from 'nest-logger-bundle';
+
+import datadog from 'pino-datadog';
 
 //
 const { NODE_ENV } = process.env;
@@ -29,26 +30,46 @@ const prod = !NODE_ENV || NODE_ENV === 'production';
 		}),
 
 		//
-		NestLoggerModule.forRootAsync({
+		LoggerBundleModule.forRootAsync({
 			isGlobal: false,
-			useFactory: (config: ConfigService): NestLoggerParams => {
+			useFactory: async (config: ConfigService): Promise<LoggerBundleParams> => {
+				const datadogStream = await datadog.createWriteStream({
+					apiKey: config.get('datadog.apiKey'),
+					service: config.get('datadog.serviceName'),
+				});
+
 				return {
-					/** don't change this */
-					pinoHttp: {
-						level: !prod ? 'trace' : 'info',
+					loggers: {
+						type: 'default',
+						prettyPrint: {
+							mode: LoggerBundleParamsLogggerMode.LOG_BUNDLE,
+							disabled: false,
+							options: {
+								colorize: true,
+								minimumLevel: 'trace', // optional
+							},
+						},
+						streams: {
+							mode: LoggerBundleParamsLogggerMode.LOG_BUNDLE,
+							disabled: true,
+							pinoStreams: [
+								{
+									stream: datadogStream,
+									level: 'trace',
+								},
+							],
+						},
+						timestamp: {
+							format: {
+								template: 'DD/MM/YYYY - HH:mm:ss.SSS',
+								timezone: 'America/Sao_Paulo',
+							},
+						},
 					},
 
-					// You can change this
 					contextBundle: {
 						strategy: {
-							onDispatch: NestLoggerDispatchStrategy.DISPATCH,
-							level: NestLoggerLevelStrategy.MAJOR_LEVEL,
-							onError: NestLoggerOnErrorStrategy.DISPATCH,
-						},
-
-						stream: {
-							datadogApiKey: config.get('datadog.apiKey'),
-							datadogServiceName: config.get('datadog.serviceName'),
+							level: LoggerBundleLevelStrategy.MAJOR_LEVEL,
 						},
 					},
 				};
@@ -68,6 +89,6 @@ const prod = !NODE_ENV || NODE_ENV === 'production';
 		},
 	],
 
-	exports: [ConfigModule, NestLoggerModule],
+	exports: [ConfigModule, LoggerBundleModule],
 })
 export class GlobalModule {}

@@ -32,6 +32,3 @@ logs
 
 # Environment data
 *.env
-
-# NPM
-.npmrc

@@ -10,7 +10,7 @@ export class SampleController {
 
 	@Get('log-sample/:valueToLog')
 	@ApiParam({ name: 'valueToLog', example: 'Teste 123' })
-	logSample(@Param('valueToLog') valueToLog: string): Promise<string> {
+	logSample(@Param('valueToLog') valueToLog: string) {
 		return this.sampleService.logSample(valueToLog);
 	}
 }

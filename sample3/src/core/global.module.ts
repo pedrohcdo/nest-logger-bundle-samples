@@ -9,11 +9,8 @@ import { environmentSchema } from '../config/environment.schema';
 import {
 	LoggerBundleLevelStrategy,
 	LoggerBundleModule,
-	LoggerBundleParams,
 	LoggerBundleParamsLogggerMode,
 } from 'nest-logger-bundle';
-
-import datadog from 'pino-datadog';
 
 //
 const { NODE_ENV } = process.env;
@@ -30,7 +27,27 @@ const prod = !NODE_ENV || NODE_ENV === 'production';
 		}),
 
 		//
-		LoggerBundleModule.forRoot({}),
+		LoggerBundleModule.forRoot({
+			loggers: {
+				type: 'default',
+				prettyPrint: {
+					mode: LoggerBundleParamsLogggerMode.LOG_BUNDLE,
+					disabled: false
+				},
+				timestamp: {
+					format: {
+						template: 'DD/MM/YYYY - HH:mm:ss.SSS',
+						timezone: 'America/Sao_Paulo',
+					},
+				},
+			},
+
+			contextBundle: {
+				strategy: {
+					level: LoggerBundleLevelStrategy.MAJOR_LEVEL,
+				},
+			},
+		})
 	],
 
 	providers: [

@@ -41,7 +41,8 @@ To run the desired project just follow the instructions below.
 | Sample | Description | Command |
 | :--- | :----: | :--- |
 | Sample1 | Minimum configuration example  | ```npm run start:sample1``` |
-| Sample2 | Minimum configuration example  | ```npm run start:sample2``` |
+| Sample2 | Project demonstrating how to configure a transporter, using the datadog as a base  | ```npm run start:sample2``` |
+| Sample2 | Project demonstrating how to use the `AsyncLoggerService`  | ```npm run start:sample3``` |
 
 ________________
 
