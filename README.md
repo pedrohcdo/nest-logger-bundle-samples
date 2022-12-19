@@ -1,6 +1,3 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="" width="120" alt="Nest Logo" /></a>
-</p>
 
 ## Description
 
